@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Linkedlist</title>
+</head>
+<body>
+	<script type="text/javascript">
+		class node{
+			data;
+			next;
+			prev;
+			constructor(data){
+				this.data = data;
+			}
+		}
+		class linklist{
+			head = null;
+			size = 0;
+		}
+
+		function countNodes(head){
+			var count = 1;
+			while(head != null){
+				count++;
+				head = head.next;
+			}
+			return count;
+		}
+
+		function addNode()
+
+		var a = new node('A');
+		var b = new node('B');
+		var c = new node('C');
+		var d = new node('D');
+		var e = new node('E');
+		a.prev = null;
+		a.next = b;
+		b.prev = a;
+		b.next = c;
+		c.prev = b;
+		c.next = d;
+		d.prev = c;
+		d.next = e;
+		e.prev = d;
+		d.next = null;
+		document.write(countNodes(a));
+	</script>
+</body>
+</html>
