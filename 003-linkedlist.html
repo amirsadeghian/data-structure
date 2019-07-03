@@ -5,46 +5,117 @@
 </head>
 <body>
 	<script type="text/javascript">
-		class node{
+		class Node{
 			data;
 			next;
-			prev;
 			constructor(data){
 				this.data = data;
 			}
 		}
-		class linklist{
+		class Linkedlist{
 			head = null;
 			size = 0;
-		}
 
-		function countNodes(head){
-			var count = 1;
-			while(head != null){
-				count++;
-				head = head.next;
+			//Append the node to the end of the linkedlist (Add to the end)
+			appendNode(node){
+				if(this.head == null){ //in case linkedlist is empty
+					this.head = node;
+					node.next = null;
+				}
+				let temp = this.head;
+				while(temp.next != null){
+					temp = this.head.next;
+				}
+				temp.next = node;
+				node.next = null;
+				this.size++;
 			}
-			return count;
+
+			insertAtIndex(index, node){
+				if(this.head == null){ //in case linkedlist is empty
+					this.head = node;
+					node.next = null;
+				}
+				if(index == 1){ //in case index is one , add it at the beginning of the linkedlist
+					let oldHead = this.head;
+					this.head = node;
+					node.next = oldHead
+				}
+				if(index == 0 || index > this.size){ // if index is out of bound
+					return;
+				}
+				let temp = this.head;
+				let counter = 0;
+				while(counter < index-2){
+					temp = temp.next;
+					counter++;
+				}
+				let oldNext = temp.next;
+				temp.next = node;
+				node.next = oldNext;
+				this.size++; 
+			}
+
+			removeByIndex(index){
+				if(index == 0 || index > this.size){ // if index is out of bound
+					return;
+				}
+				let counter = 0;
+				let temp = this.head;
+				while(counter < this.size-2){
+					temp = temp.next;
+				}
+				let nodeToBeRemoved = temp.next;
+				temp.next = nodeToBeRemoved.next;
+				nodeToBeRemoved = null;
+				this.counter--;
+			}
+
+			//Count the items in the linkedlist
+			countNodes(){
+				if(this.head == null){ //In case linkedlist is empty
+					return 0;
+				}
+				let count = 0;
+				let temp = this.head;
+				while(temp.next != null){
+					temp = this.head.next;
+					count++;
+				}
+				return count;
+			}
+
+			//Print the linkedlist
+			print(){
+				let output = '';
+				if(this.head == null){ //In case linkedlist is empty
+					return;
+				}
+				let temp = this.head;
+				do{
+					output += '['+temp.data+']';
+					temp = temp.next;
+				}while(temp != null);
+				document.write(output);
+			}
 		}
+		let linkedlist = new Linkedlist();
+		let node1 = new Node("N1");
+		linkedlist.appendNode(node1);
+		let node2 = new Node("N2");
+		linkedlist.appendNode(node2);
+		let node3 = new Node("N3");
+		linkedlist.appendNode(node3);
+		linkedlist.print();
 
-		function addNode()
+		document.write('<br>');
+		let nodeX = new Node("X");
+		linkedlist.insertAtIndex(3,nodeX);
+		linkedlist.print();
 
-		var a = new node('A');
-		var b = new node('B');
-		var c = new node('C');
-		var d = new node('D');
-		var e = new node('E');
-		a.prev = null;
-		a.next = b;
-		b.prev = a;
-		b.next = c;
-		c.prev = b;
-		c.next = d;
-		d.prev = c;
-		d.next = e;
-		e.prev = d;
-		d.next = null;
-		document.write(countNodes(a));
+		document.write('<br>');
+		linkedlist.removeByIndex(3);
+		linkedlist.print();
 	</script>
 </body>
 </html>
