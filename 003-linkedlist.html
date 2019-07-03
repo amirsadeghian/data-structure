@@ -62,13 +62,15 @@
 				}
 				let counter = 0;
 				let temp = this.head;
-				while(counter < this.size-2){
+				while(counter < index-2){
+					console.log(temp);
 					temp = temp.next;
+					counter++;
 				}
 				let nodeToBeRemoved = temp.next;
 				temp.next = nodeToBeRemoved.next;
 				nodeToBeRemoved = null;
-				this.counter--;
+				this.size--;
 			}
 
 			//Count the items in the linkedlist
