@@ -98,8 +98,15 @@
 			}
 
 			//Reverse the linkedlist (recursive)
-			reverseRecursive(){
-
+			reverseRecursive(current){
+				if(current.next == null){
+					this.head = current;
+					return null;
+				}
+				this.reverseRecursive(current.next);
+				let q = current.next;
+				q.next = current;
+				current.next = null;
 			}
 
 			//Count the items in the linkedlist
@@ -145,7 +152,7 @@
 		linkedlist.print();
 
 		document.write('<br>');
-		linkedlist.reverseRecursive();
+		linkedlist.reverseRecursive(linkedlist.head);
 		linkedlist.print();
 
 
