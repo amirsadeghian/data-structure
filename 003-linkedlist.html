@@ -60,10 +60,16 @@
 				if(index == 0 || index > this.size){ // if index is out of bound
 					return;
 				}
+				if(index == 1){//if trying to remove the first one
+					let nodeToBeRemoved = this.head;
+					this.head = nodeToBeRemoved.next;
+					nodeToBeRemoved = null;
+					this.size--;
+					return;
+				}
 				let counter = 0;
 				let temp = this.head;
 				while(counter < index-2){
-					console.log(temp);
 					temp = temp.next;
 					counter++;
 				}
@@ -118,6 +124,15 @@
 		document.write('<br>');
 		linkedlist.removeByIndex(3);
 		linkedlist.print();
+
+		document.write('<br>');
+		linkedlist.removeByIndex(3);
+		linkedlist.print();
+
+		document.write('<br>');
+		linkedlist.removeByIndex(1);
+		linkedlist.print();
+
 	</script>
 </body>
 </html>
