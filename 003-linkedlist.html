@@ -6,15 +6,16 @@
 <body>
 	<script type="text/javascript">
 		class Node{
-			data;
-			next;
 			constructor(data){
+				this.next = null;
 				this.data = data;
 			}
 		}
 		class Linkedlist{
-			head = null;
-			size = 0;
+			constructor(){
+				this.head = null;
+				this.size = 0;
+			}
 
 			//Append the node to the end of the linkedlist (Add to the end)
 			appendNode(node){
@@ -79,6 +80,28 @@
 				this.size--;
 			}
 
+			//Reverse the linkedlist (iterative)
+			reverse(){
+				if(this.head == null){ //In case linkedlist is empty
+					return;
+				}
+				let current = this.head;
+				let prev = null;
+				let next;
+				while(current != null){
+					next= current.next;
+					current.next = prev;
+					prev = current;
+					current = next;
+				}
+				this.head = prev;
+			}
+
+			//Reverse the linkedlist (recursive)
+			reverseRecursive(){
+
+			}
+
 			//Count the items in the linkedlist
 			countNodes(){
 				if(this.head == null){ //In case linkedlist is empty
@@ -122,16 +145,9 @@
 		linkedlist.print();
 
 		document.write('<br>');
-		linkedlist.removeByIndex(3);
+		linkedlist.reverseRecursive();
 		linkedlist.print();
 
-		document.write('<br>');
-		linkedlist.removeByIndex(3);
-		linkedlist.print();
-
-		document.write('<br>');
-		linkedlist.removeByIndex(1);
-		linkedlist.print();
 
 	</script>
 </body>
