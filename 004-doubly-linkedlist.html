@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Linkedlist</title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Node{
+			constructor(data){
+				this.data = data;
+				this.prev = null;
+				this.next = null;
+			}
+		}
+		class Linkedlist{
+			constructor(){
+				this.size = 0;
+				this.head = null;
+				this.tail = null;
+			}
+
+			//Insert a new node at the begining of the linkedlist
+			insertAtHead(node){
+				if(this.head == this.tail && this.head == null){ //If linkedlist is empty
+					node.prev = null;
+					node.next = null;
+					this.head = node;
+					this.tail = node;
+
+				}else{
+					node.prev = null;
+					node.next = this.head;
+					this.head = node;
+					if(this.head.next != null){
+						this.head.next.prev = node; //Set the prev of the next node
+					}
+				}
+				this.size++;
+			}
+
+			//Insert a new node at the end of the linkedlist
+			insertAtTail(node){
+				if(this.head == this.tail && this.head == null){ //If linkedlist is empty
+					node.prev = null;
+					node.next = null;
+					this.head = node;
+					this.tail = node;
+				}else{
+					node.prev = this.tail;
+					node.next = null;
+					this.tail = node;
+					if(this.tail.prev != null){
+						this.tail.prev.next = node; // Set the next of the prev node 
+					}
+				}
+				this.size++;
+			}
+
+			//Print the content of the linkedlist
+			print(){
+				let output = '';
+				if(this.head == this.tail && this.head == null){ //empty linkedlist
+					return;
+				}
+				let temp = this.head;
+					console.log(temp);
+					console.log(temp.next);
+				while(temp.next != null){
+					console.log('A');
+					output += temp.data;
+					temp = temp.next;
+					console.log(temp);
+				}
+				document.write('[' + output + ']');
+			}
+		}
+
+		linkedlist = new Linkedlist();
+		let nodeA = new Node('A');
+		linkedlist.insertAtHead(nodeA);
+		let nodeC = new Node('C');
+		linkedlist.insertAtHead(nodeC);
+		linkedlist.print();
+
+		document.write('<br>');
+		let nodeX = new Node('X');
+		linkedlist.insertAtTail(nodeX);
+		let nodeZ = new Node('Z');
+		linkedlist.insertAtTail(nodeZ);
+		//console.log(linkedlist);
+		
+	</script>
+</body>
+</html>
