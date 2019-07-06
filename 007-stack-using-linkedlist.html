@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stack</title>
+</head>
+<body>
+	<script type="text/javascript">
+		//Node class
+		class node{
+			constructor(data){
+				this.data = data;
+				this.next = null;
+			}
+		}
+		//Stack class
+		class stack{
+			constructor(){
+				this.top = null;
+				this.size = 0;
+			}
+
+			push(x){
+				let theNode = new node(x); //Create an instace of node and store the value in it
+				if(this.size !== 0){
+					theNode.next = this.top;
+				}
+				this.top = theNode;
+				this.size++;
+			}
+
+			pop(){
+				let el = this.top;
+				this.top = this.top.next;
+				this.size--;
+				return el;
+			}
+
+			gettop(){
+				return this.top;
+			}
+
+			isEmpty(){
+				return (this.size === 0)? true : false;
+			}
+
+			print(){
+				let temp = this.top;
+				while(temp != null){
+					document.write('['+temp.data+']');
+					temp = temp.next;
+				}
+				document.write('<br>');
+			}
+		}
+
+		let mystack = new stack();
+		mystack.push(12);
+		mystack.print();
+
+		mystack.push(5);
+		mystack.print();
+		let el = mystack.pop();
+		mystack.print();
+
+		mystack.push(7);
+		mystack.print();
+		mystack.pop();
+		mystack.print();
+
+		mystack.pop();
+		mystack.print();
+	</script>
+</body>
+</html>
