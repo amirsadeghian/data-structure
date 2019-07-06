@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fibonacci - Dynamic Programming</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function fib(n,history){
+			if(n>3){
+				if(history[n]!=null){
+					return history[n];
+				}
+				let result = fib(n-1, history) + fib(n-2, history);
+				history[n] = result;
+				return result;
+			}else{
+				return 1;
+			}
+		}
+		document.write(fib(9,[]));
+	</script>
+</body>
+</html>
