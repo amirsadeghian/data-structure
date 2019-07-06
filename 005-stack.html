@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stack</title>
+</head>
+<body>
+	<script type="text/javascript">
+		class stack{
+			constructor(){
+				this.stack = [];
+			}
+
+			push(x){
+				this.stack.push(x);
+			}
+
+			pop(){
+				
+				return this.stack.pop();
+			}
+
+			top(){
+				return this.stack[this.stack.length-1];
+			}
+
+			isEmpty(){
+				return (this.stack.length === 0)? true : false;
+			}
+		}
+
+		let mystack = new stack();
+		mystack.push(12);
+		console.log(mystack.stack);
+		mystack.push(5);
+		console.log(mystack.stack);
+		let el = mystack.pop();
+		console.log('Just remvoed: '+el);
+		console.log(mystack.stack);
+		mystack.push(7);
+		console.log(mystack.stack);
+		console.log(mystack.top());
+		console.log(mystack.isEmpty());
+		mystack.pop();
+		console.log(mystack.stack);
+		mystack.pop();
+		console.log(mystack.stack);
+		console.log(mystack.isEmpty());
+	</script>
+</body>
+</html>
