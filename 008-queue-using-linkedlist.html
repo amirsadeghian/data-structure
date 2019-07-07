@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Queue using Linkedlist</title>
+</head>
+<body>
+	<script type="text/javascript">
+		class Linkedlist{
+			constructor(){
+				this.head = null;
+				this.tail = null;
+				this.size = 0;
+			}
+
+			isEmpty(){
+				return this.size == 0;
+			}
+
+			enqueue(node){
+				if(this.size == 0){//First item
+					this.head = node;
+					this.tail = node;
+				}else{
+					this.tail.next = node;
+					this.tail = node;
+				}
+				this.size++;
+			}
+
+			dequeue(){
+				if(this.isEmpty()){
+					return false;
+				}
+				if(this.size==1){//Last item
+					let node = this.head;
+					this.head = null;
+					this.tail = null;
+					this.size--;
+					return node;
+				}else{
+					let node = this.head;
+					this.head = node.next;
+					this.size--;
+					return node;
+				}
+			}
+
+			print(){
+				if(this.isEmpty()){
+					return false;
+				}
+				let temp = this.head;
+				while(temp != null){
+					document.write('['+temp.data+']');
+					temp = temp.next;
+				}
+				document.write('<br>');
+			}
+		}
+
+		class Node{
+			constructor(data){
+				this.data = data;
+				this.next = null
+			}
+
+		}
+		linkedlist = new Linkedlist();
+
+		let node1 = new Node(2);
+		linkedlist.enqueue(node1);
+		linkedlist.print();
+		let node2 = new Node(9);
+		linkedlist.enqueue(node2);
+		linkedlist.print();
+		let node3 = new Node(3);
+		linkedlist.enqueue(node3);
+		linkedlist.print();
+
+		let d1 = linkedlist.dequeue();
+		document.write('<br>DQ:'+d1.data+'<br>');
+		linkedlist.print();
+
+		let d2 = linkedlist.dequeue();
+		document.write('<br>DQ:'+d2.data+'<br>');
+		linkedlist.print();
+
+		let d3 = linkedlist.dequeue();
+		document.write('<br>DQ:'+d3.data+'<br>');
+		linkedlist.print();
+
+		let d4 = linkedlist.dequeue();
+		document.write('<br>DQ:'+d4.data+'<br>');
+		linkedlist.print();
+	</script>
+</body>
+</html>
