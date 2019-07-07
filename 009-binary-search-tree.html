@@ -72,6 +72,39 @@
 				let rightHeight = this.findHeight(root.right);
 				return (leftHeight > rightHeight)? leftHeight+1 : rightHeight+1;
 			}
+
+			traversePreorder(root, output){
+				output.push(root.data); 
+				if(root.left != null){
+					output = this.traversePreorder(root.left, output);
+				}
+				if(root.right != null){
+					output = this.traversePreorder(root.right, output);
+				}
+				return output;
+			}
+
+			traverseInorder(root, output){
+				if(root.left != null){
+					output = this.traverseInorder(root.left, output);
+				}
+				output.push(root.data);
+				if(root.right != null){
+					output = this.traverseInorder(root.right, output);
+				}
+				return output;
+			}
+
+			traversePostorder(root, output){
+				if(root.left != null){
+					output = this.traversePostorder(root.left, output);
+				}
+				if(root.right != null){
+					output = this.traversePostorder(root.right, output);
+				}
+				output.push(root.data);
+				return output;
+			}
 		}
 
 
@@ -88,6 +121,10 @@
 		console.log('Min:'+bst.findMin(root));
 		console.log('Max:'+bst.findMax(root));
 		console.log('Height:'+bst.findHeight(root));
+
+		console.log('PreOrder Traverse: '+bst.traversePreorder(root,[]));
+		console.log('InOrder Traverse: '+bst.traverseInorder(root,[]));
+		console.log('PostOrder Traverse: '+bst.traversePostorder(root,[]));
 	</script>
 </body>
 </html>
