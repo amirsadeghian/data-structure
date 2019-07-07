@@ -10,6 +10,7 @@
 				this.left = null;
 				this.right = null;
 				this.data = data;
+				this.queue = new Queue();
 			}
 		}
 		class BinarySearchTree{
@@ -105,6 +106,72 @@
 				output.push(root.data);
 				return output;
 			}
+
+			traverseBreadthFirst(root, output){
+				this.queue = new Queue();//Reset the queue
+				console.log(this.queue);
+				return this.traverseBreadthFirstHelper(root,output);
+			}
+			traverseBreadthFirstHelper(root,output){
+				if(root == null){
+					return;
+				}
+				this.queue.enqueue(root);
+				while(this.queue.size !== 0){
+					let current = this.queue.dequeue();
+					output.push(current.data); 
+					if(current.left != null){
+						this.queue.enqueue(current.left);
+					}
+					if(current.right != null){
+						this.queue.enqueue(current.right);
+					}
+				}
+				return output;
+			}
+		}
+
+		class Queue{
+			constructor(){
+				this.head = null;
+				this.tail = null;
+				this.size = 0;
+			}
+
+			enqueue(node){
+				if(this.size == 0){
+					this.head = node;
+					this.tail = node;
+				}else{
+					this.tail.next = node;
+					this.tail = node;
+				}
+				this.size++;
+			}
+
+			dequeue(){
+				if(this.size == 0){
+					return false;
+				}else if(this.size==1){
+					let oldHead = this.head;
+					this.head = null;
+					this.tail = null;
+					this.size--;
+					return oldHead;
+				}else{
+					let oldHead = this.head;
+					this.head = this.head.next;
+					this.size--;
+					return oldHead;
+				}
+			}
+		}
+
+		class QueueNode{
+			constructor(data){
+				this.data = data;
+				this.next = null;
+			}
 		}
 
 
@@ -125,6 +192,7 @@
 		console.log('PreOrder Traverse: '+bst.traversePreorder(root,[]));
 		console.log('InOrder Traverse: '+bst.traverseInorder(root,[]));
 		console.log('PostOrder Traverse: '+bst.traversePostorder(root,[]));
+		console.log('Traverse Breadth First: '+bst.traverseBreadthFirst(root,[]))
 	</script>
 </body>
 </html>
