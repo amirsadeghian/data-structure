@@ -41,6 +41,28 @@
 					return this.search(root.right, data);
 				}
 			}
+
+			findMin(root){
+				if(root == null){
+					return false;
+				}
+				if(root.left != null){
+					return this.findMin(root.left);
+				}else{
+					return root.data;
+				}
+			}
+
+			findMax(root){
+				if(root == null){
+					return false;
+				}
+				if(root.right != null){
+					return this.findMax(root.right);
+				}else{
+					return root.data;
+				}
+			}
 		}
 
 
@@ -54,6 +76,8 @@
 		root = bst.insert(root, 12);
 		console.log(root);
 		console.log(bst.search(root,24));
+		console.log('Min:'+bst.findMin(root));
+		console.log('Max:'+bst.findMax(root));
 	</script>
 </body>
 </html>
