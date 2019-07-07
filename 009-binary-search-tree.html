@@ -63,6 +63,15 @@
 					return root.data;
 				}
 			}
+
+			findHeight(root){
+				if(root == null){
+					return -1;
+				}
+				let leftHeight = this.findHeight(root.left);
+				let rightHeight = this.findHeight(root.right);
+				return (leftHeight > rightHeight)? leftHeight+1 : rightHeight+1;
+			}
 		}
 
 
@@ -78,6 +87,7 @@
 		console.log(bst.search(root,24));
 		console.log('Min:'+bst.findMin(root));
 		console.log('Max:'+bst.findMax(root));
+		console.log('Height:'+bst.findHeight(root));
 	</script>
 </body>
 </html>
