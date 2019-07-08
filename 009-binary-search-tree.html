@@ -43,7 +43,7 @@
 				}
 			}
 
-			findMin(root){
+			findMin(root){ //returns the node value
 				if(root == null){
 					return false;
 				}
@@ -62,6 +62,17 @@
 					return this.findMax(root.right);
 				}else{
 					return root.data;
+				}
+			}
+
+			findMinNode(root){ // returns the node
+				if(root == null){
+					return false;
+				}
+				if(root.left != null){
+					return this.findMin(root.left);
+				}else{
+					return root;
 				}
 			}
 
@@ -129,6 +140,35 @@
 				}
 				return output;
 			}
+
+			delete(root, data){
+				if(root == null){
+					return;
+				}else if(data < root.data){
+					root.left = this.delete(root.left,data);
+				}else if(data > root.data){
+					root.right = this.delete(root.right,data);
+				}else{
+					if(root.left == null && root.right == null){//Case 1 : no child
+						root = null;
+					}else if(root.left == null){ //Case 2: one side is null
+						let node = root;
+						root = root.right;
+						node = null;
+					}else if(root.right == null){ //Case 2: one side is null
+						let node = root;
+						root = root.left;
+						node = null;
+					}else{//Case 3: Both children are not null
+						//First find the min on the right || OR || find the max on the left. Here we are doing the min on the right
+						let node = this.findMinNode(root.right);
+						root.data = node.data;
+						root.right = this.delete(root.right, node.data);
+					}
+					return root;
+				}
+			}
+
 		}
 
 		class Queue{
@@ -192,7 +232,9 @@
 		console.log('PreOrder Traverse: '+bst.traversePreorder(root,[]));
 		console.log('InOrder Traverse: '+bst.traverseInorder(root,[]));
 		console.log('PostOrder Traverse: '+bst.traversePostorder(root,[]));
-		console.log('Traverse Breadth First: '+bst.traverseBreadthFirst(root,[]))
+		console.log('Traverse Breadth First: '+bst.traverseBreadthFirst(root,[]));
+		bst.delete(root, 20);
+		console.log('InOrder Traverse: '+bst.traverseInorder(root,[]));
 	</script>
 </body>
 </html>
